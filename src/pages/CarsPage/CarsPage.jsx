@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CarTableRow from '../../components/CarTableRow/CarTableRow';
 import CarModel from '../../model/CarModel';
 
 function CarsPage() {
@@ -17,8 +18,7 @@ function CarsPage() {
     }
 
     const carTableRows = cars.map(car =>
-        // <CarTableRow car={car} isHighestCar={car === highestCar}/>
-        <p>{car.brand + car.model}</p>
+        <CarTableRow car={car} isHighestCar={car === highestCar}/>
     );
 
     function addCar() {
