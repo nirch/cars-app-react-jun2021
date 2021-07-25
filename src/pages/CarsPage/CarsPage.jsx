@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button, Table } from 'react-bootstrap';
 import CarTableRow from '../../components/CarTableRow/CarTableRow';
 import CarModel from '../../model/CarModel';
 
@@ -27,7 +28,7 @@ function CarsPage() {
     }
     return (
         <div>
-            <table className="table">
+            <Table>
                 <thead>
                     <tr>
                         <th>Brand</th>
@@ -40,8 +41,8 @@ function CarsPage() {
                 <tbody>
                     {carTableRows}
                 </tbody>
-            </table>
-            <button className="btn btn-primary" onClick={addCar}>Add Car</button>
+            </Table>
+            <Button onClick={addCar}>Add Car</Button>
         </div>
     );
 }
