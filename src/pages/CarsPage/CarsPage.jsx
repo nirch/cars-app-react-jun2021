@@ -1,14 +1,20 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import CarTableRow from '../../components/CarTableRow/CarTableRow';
 import CarModel from '../../model/CarModel';
 
+
 function CarsPage() {
-    const [cars, setCars] = useState([
-        new CarModel("22-322-22", "Toyota", "Yaris", 2002, 250000),
-        new CarModel("21-322-22", "Toyota", "Corola", 2015, 115000),
-        new CarModel("24-322-22", "Hyundai", "i30", 2010, 180000),
-    ]);
+    const [cars, setCars] = useState([]);
+
+    useEffect(() => {
+        axios.get("cars.json").then(response => {
+            setCars(response.data.map(plainCar => new CarModel(plainCar.id, plainCar.brand, plainCar.model, plainCar.year, plainCar.km)));
+        });
+    }, []);
+
 
     // finding the car with the highest km per year
     let highestCar = cars[0];
@@ -19,7 +25,7 @@ function CarsPage() {
     }
 
     const carTableRows = cars.map(car =>
-        <CarTableRow car={car} isHighestCar={car === highestCar}/>
+        <CarTableRow key={car.id} car={car} isHighestCar={car === highestCar}/>
     );
 
     function addCar() {

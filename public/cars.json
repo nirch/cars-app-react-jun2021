@@ -1,0 +1,23 @@
+[
+    {
+        "id": "22-322-22",
+        "brand": "Toyota",
+        "model": "Yaris",
+        "year": 2002,
+        "km": 250000
+    },
+    {
+        "id": "21-322-22",
+        "brand": "Toyota",
+        "model": "Corola",
+        "year": 2015,
+        "km": 115000
+    },
+    {
+        "id": "24-322-22",
+        "brand": "Hyundai",
+        "model": "i30",
+        "year": 2010,
+        "km": 180000
+    }
+]
