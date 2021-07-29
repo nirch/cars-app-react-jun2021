@@ -1,20 +1,11 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import { Button, Table } from 'react-bootstrap';
+import React from 'react';
+import { Button, Container, Table } from 'react-bootstrap';
 import CarTableRow from '../../components/CarTableRow/CarTableRow';
 import CarModel from '../../model/CarModel';
 
 
-function CarsPage() {
-    const [cars, setCars] = useState([]);
-
-    useEffect(() => {
-        axios.get("cars.json").then(response => {
-            setCars(response.data.map(plainCar => new CarModel(plainCar.id, plainCar.brand, plainCar.model, plainCar.year, plainCar.km)));
-        });
-    }, []);
-
+function CarsPage({cars, onAddCar}) {
+    
 
     // finding the car with the highest km per year
     let highestCar = cars[0];
@@ -30,10 +21,10 @@ function CarsPage() {
 
     function addCar() {
         const newCar = new CarModel("23-291-22", "Subaru", "Forster", 2018, 100000);
-        setCars(cars.concat(newCar));
+        onAddCar(newCar);
     }
     return (
-        <div>
+        <Container>
             <Table>
                 <thead>
                     <tr>
@@ -49,7 +40,7 @@ function CarsPage() {
                 </tbody>
             </Table>
             <Button onClick={addCar}>Add Car</Button>
-        </div>
+        </Container>
     );
 }
 
